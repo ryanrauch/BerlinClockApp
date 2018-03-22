@@ -67,7 +67,7 @@ namespace BerlinClockApp
 	        const int scalarHeight = 100;
 	        const int sectionQuadWidth = scalarWidth / 4;
 	        const int sectionElevenWidth = scalarWidth / 11;
-	        const int sectionHeight = scalarHeight / 5;
+	        const int sectionHeight = scalarHeight / 6;
 	        const int roundX = 5;
 	        const int roundY = 5;
 
@@ -92,7 +92,7 @@ namespace BerlinClockApp
             DateTime currentTime = DateTime.Now;
 
             // Keep track of y-axis value used for each row
-            int currentY = sectionHeight / 2;
+            int currentY = sectionHeight;
 
             // Circle is only lit on even-numbered seconds.
             #region 1-Second Circle
@@ -105,7 +105,7 @@ namespace BerlinClockApp
             // Each lit block signifies 5 hrs since midnight 
 	        // ie: (0:00, 5:00, 10:00, 15:00, 20:00)
             #region 5-Hour Blocks
-            currentY = sectionHeight;
+            currentY += sectionHeight;
             /*
             for (int i = 0; i < 4; ++i)
             {
