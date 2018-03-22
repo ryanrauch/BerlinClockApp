@@ -106,15 +106,6 @@ namespace BerlinClockApp
 	        // ie: (0:00, 5:00, 10:00, 15:00, 20:00)
             #region 5-Hour Blocks
             currentY += sectionHeight;
-            /*
-            for (int i = 0; i < 4; ++i)
-            {
-                canvas.DrawRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, redFillPaint);
-                if (currentTime.Hour < (i + 1) * 5)
-                    canvas.DrawRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, maskFillPaint);
-                canvas.DrawRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, backgroundStrokePaint);
-            }
-            */
             for (int i = 0; i < 4; ++i)
 	        {
 	            canvas.DrawRoundRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight,roundX, roundY, redFillPaint);
@@ -128,15 +119,6 @@ namespace BerlinClockApp
             // ie: 02:00 would have 2 blocks lit, and 05:00 would have none lit
             #region 1-Hour Blocks
             currentY += sectionHeight;
-            /*
-	        for (int i = 0; i < 4; ++i)
-	        {
-	            canvas.DrawRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, redFillPaint);
-	            if (currentTime.Hour % 5 < i + 1)
-	                canvas.DrawRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, maskFillPaint);
-	            canvas.DrawRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, backgroundStrokePaint);
-	        }
-            */
 	        for (int i = 0; i < 4; ++i)
 	        {
 	            canvas.DrawRoundRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, roundX, roundY, redFillPaint);
@@ -152,18 +134,6 @@ namespace BerlinClockApp
             // Red blocks are at :15, :30 and :45 minutes
             #region 5-Minute Blocks
             currentY += sectionHeight;
-	        /*
-	        for (int i = 0; i < 11; ++i)
-	        {
-                if((i+1) % 3 == 0)
-    	            canvas.DrawRect(i * sectionElevenWidth, currentY, sectionElevenWidth, sectionHeight, redFillPaint);
-                else
-	                canvas.DrawRect(i * sectionElevenWidth, currentY, sectionElevenWidth, sectionHeight, yellowFillPaint);
-	            if (currentTime.Minute < (i + 1) * 5)
-	                canvas.DrawRect(i * sectionElevenWidth, currentY, sectionElevenWidth, sectionHeight, maskFillPaint);
-	            canvas.DrawRect(i * sectionElevenWidth, currentY, sectionElevenWidth, sectionHeight, backgroundStrokePaint);
-	        }
-            */
 	        for (int i = 0; i < 11; ++i)
 	        {
 	            if ((i + 1) % 3 == 0)
@@ -181,15 +151,6 @@ namespace BerlinClockApp
             // 00:16 would light first block, and 00:17 would light first two blocks
             #region 1-Minute Blocks
             currentY += sectionHeight;
-            /*
-	        for (int i = 0; i < 4; ++i)
-	        {
-	            canvas.DrawRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, yellowFillPaint);
-	            if (currentTime.Minute % 5 < i + 1)
-	                canvas.DrawRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, maskFillPaint);
-	            canvas.DrawRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, backgroundStrokePaint);
-	        }
-            */
 	        for (int i = 0; i < 4; ++i)
 	        {
 	            canvas.DrawRoundRect(i * sectionQuadWidth, currentY, sectionQuadWidth, sectionHeight, roundX, roundY, yellowFillPaint);
