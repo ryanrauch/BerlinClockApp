@@ -11,7 +11,8 @@ namespace BerlinClockApp
 {
 	public partial class MainPage : ContentPage
 	{
-	    private static SKColor backgroundColor = SKColors.Black;
+	    #region Define colors
+        private static SKColor backgroundColor = SKColors.Black;
         private SKPaint maskFillPaint = new SKPaint()
         {
             Style = SKPaintStyle.Fill,
@@ -35,10 +36,18 @@ namespace BerlinClockApp
             Style = SKPaintStyle.Fill,
             Color =  SKColors.Yellow
 	    };
+	    #endregion
 
-	    public MainPage()
+        public MainPage()
 		{
 			InitializeComponent();
+
+            // Update the UI each [1/10th] second
+            Device.StartTimer(TimeSpan.FromMilliseconds(100), () =>
+            {
+                canvasView.InvalidateSurface();
+                return true;
+            });
 		}
 
 	    private void canvasView_PaintSurface(object sender, SKPaintSurfaceEventArgs e)
@@ -59,14 +68,26 @@ namespace BerlinClockApp
 	        const int sectionQuadWidth = scalarWidth / 4;
 	        const int sectionElevenWidth = scalarWidth / 11;
 	        const int sectionHeight = scalarHeight / 5;
-
-	        DateTime currentTime = DateTime.Now;
-
-            //Scale the canvas to fit properly
+	        
+	        //Scale the canvas to fit properly
 	        if (landscape)
-	            canvas.Scale(height / scalarHeight);
-	        else
-	            canvas.Scale(width / scalarWidth);
+	        {
+                canvas.Translate(
+                    (width - (scalarWidth * height / scalarHeight)) / 2, 
+                    height % scalarHeight / 2
+                    );
+                canvas.Scale(height / scalarHeight);
+	        }
+            else
+            {
+                canvas.Translate(
+                    width % scalarWidth / 2, 
+                    (height - (scalarHeight * width / scalarWidth)) / 2
+                    );
+                canvas.Scale(width / scalarWidth);  
+            }
+
+            DateTime currentTime = DateTime.Now;
 
             // Keep track of y-axis value used for each row
             int currentY = sectionHeight / 2;
